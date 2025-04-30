@@ -104,124 +104,197 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+---
+ Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 1
+ insert into Student_details(RollNo,Name,Gender,Subject,MARKS)
+values('201','David Lee','M','Physics','92');
 ```
 
 **Output:**
 
-![Output1](output.png)
+
+![Screenshot 2025-04-30 154012](https://github.com/user-attachments/assets/bd04e1aa-c089-4ae7-96ca-3181d8945713)
 
 **Question 2**
 ---
--- Paste Question 2 here
+ Create a table named Invoices with the following constraints:
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+Amount as REAL should be greater than 0.
+DueDate as DATE should be greater than the InvoiceDate.
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
 ```sql
--- Paste your SQL code below for Question 2
+-- create table Invoices(
+InvoiceID  INTEGER primary key,
+InvoiceDate  DATE,
+Amount real
+CHECK(Amount>0),
+DueDate DATE
+CHECK(DueDate>InvoiceDate),
+OrderID INTEGER,
+FOREIGN KEY (OrderID) references Orders(OrderID)
+)
 ```
 
 **Output:**
 
-![Output2](output.png)
+
+![Screenshot 2025-04-30 154026](https://github.com/user-attachments/assets/145b13ad-5e22-4698-858c-26e758aadd96)
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a table named Customers with the following columns:
+
+CustomerID as INTEGER
+Name as TEXT
+Email as TEXT
+JoinDate as DATETIME
 
 ```sql
--- Paste your SQL code below for Question 3
+create table Customers(
+CustomerID INTEGER,
+Name TEXT,
+Email TEXT,
+JoinDate DATETIME
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+
+![Screenshot 2025-04-30 154056](https://github.com/user-attachments/assets/baf36dde-fbb1-4ad7-b6e5-ff6f7aa8834a)
 
 **Question 4**
 ---
--- Paste Question 4 here
+ Write an SQL query to add two new columns, first_name and last_name, to the table employee. Both columns should have a data type of varchar(50).
 
 ```sql
--- Paste your SQL code below for Question 4
+alter table employee add column first_name varchar(50); 
+alter table employee add column last_name varchar(50);
 ```
 
 **Output:**
 
-![Output4](output.png)
+
+![Screenshot 2025-04-30 154113](https://github.com/user-attachments/assets/22359850-9f71-43fb-b599-afa0e2dd88b1)
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write an SQL query to change the name of the column id to employee_id in the table employee.
 
 ```sql
--- Paste your SQL code below for Question 5
+alter table employee rename id to employee_id;
 ```
 
 **Output:**
 
-![Output5](output.png)
+
+![Screenshot 2025-04-30 154124](https://github.com/user-attachments/assets/fcf1b75e-d549-469b-b549-fca50de7022a)
 
 **Question 6**
 ---
--- Paste Question 6 here
+create a table named jobs including columns job_id, job_title, min_salary and max_salary, and make sure that, the default value for job_title is blank and min_salary is 8000 and max_salary is NULL will be entered automatically at the time of insertion if no value assigned for the specified columns.
 
 ```sql
--- Paste your SQL code below for Question 6
+create table jobs(
+job_id integer,
+job_title text default '',
+min_salary integer default 8000,
+max_salary integer null
+
+);
+
 ```
 
 **Output:**
 
-![Output6](output.png)
+
+![Screenshot 2025-04-30 154137](https://github.com/user-attachments/assets/26b7a62d-8100-489c-a237-0f47b724238a)
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should set NULL on updates and deletes.
+item_desc and rate should not accept NULL.
 
 ```sql
--- Paste your SQL code below for Question 7
+create table item(
+item_id TEXT primary key,
+item_desc TEXT not null,
+rate INTEGER not null,
+icom_id TEXT CHECK(length(icom_id)==4),
+foreign key (icom_id) references company(com_id) 
+ON UPDATE SET NULL
+ON DELETE SET NULL
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+
+![Screenshot 2025-04-30 154146](https://github.com/user-attachments/assets/ef00be80-b578-44e7-ab00-1e7e726d6f60)
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert the following customers into the Customers table:
 
 ```sql
--- Paste your SQL code below for Question 8
+insert into Customers (CustomerID,Name,Address,City,ZipCode)
+values('302','Laura Croft' , '456 Elm St' , 'Seattle' ,'98101'),
+(303, 'Bruce Wayne'  ,'789 Oak St',  'Gotham','10001');
 ```
 
 **Output:**
 
-![Output8](output.png)
+
+![Screenshot 2025-04-30 154204](https://github.com/user-attachments/assets/4eb03818-12e3-48ab-b577-2c50967789ae)
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
 
 ```sql
--- Paste your SQL code below for Question 9
+create table Attendance(
+AttendanceID  INTEGER primary key,
+EmployeeID INTEGER ,
+AttendanceDate  DATE,
+Status TEXT check(Status in( 'Present', 'Absent', 'Leave')),
+foreign key (EmployeeID) references Employees(EmployeeID)
+);
 ```
 
 **Output:**
 
-![Output9](output.png)
+
+![Screenshot 2025-04-30 154217](https://github.com/user-attachments/assets/69a68eae-55d5-454a-9292-12af033bdfa1)
 
 **Question 10**
 ---
--- Paste Question 10 here
+Insert all employees from Former_employees into Employee
+
+Table attributes are EmployeeID, Name, Department, Salary
 
 ```sql
--- Paste your SQL code below for Question 10
+insert into Employee(EmployeeID, Name, Department, Salary)
+select EmployeeID, Name, Department, Salary from Former_employees;
 ```
 
 **Output:**
 
-![Output10](output.png)
+
+![Screenshot 2025-04-30 154224](https://github.com/user-attachments/assets/7be92b8c-8fc1-4bd8-b8f6-d2106fcad482)
 
 
 ## RESULT
